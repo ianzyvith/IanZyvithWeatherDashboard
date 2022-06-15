@@ -1,4 +1,30 @@
-#leftCol {
+body {
+    align-content: center;
+}
+
+header {
+    padding: 10px;
+}
+
+.search-section {
     border-bottom: black solid;
     margin: 10px;
 }
+
+.city-name-section {
+    margin: 10px;
+}
+
+.current-weather-section {
+    border-bottom: black solid;
+    border-top: black solid;
+    border-left: black solid;
+    border-right: black solid;
+    margin: 10px;
+    padding: 10px;
+}
+
+.five-day-forcast {
+    margin: 10px;
+}
+

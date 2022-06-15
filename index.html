@@ -10,7 +10,10 @@
         <link rel="stylesheet" href="./assets/css/style.css" />
     </head>
 
-    <!-- top header -->
+
+    <body>
+
+        <!-- top header -->
     <header class="bg-primary bg-gradient text-white text-center">
         <h1 class="fw-bold">Ian Zyvith Weather Dashboard</h1>
     </header>
@@ -19,15 +22,105 @@
     <content class="container row">
 
         <!-- left side column -->
-        <div id="leftCol" class="col-3 col">
-            <h2 class="fw-bold">Search for a City:</h2>
-            <input type="cityName" class="form-control" id="floatingInputGrid" placeholder="City Name">
-            <p></p>
-            <button type="button" class="btn btn-primary">Submit</button>
-            <p></p>
+        <div class="col-3 col">
+
+            <!-- search section -->
+            <div class="search-section">
+                <h2 class="fw-bold">Search for a City:</h2>
+                <input type="text" class="form-control" id="search-input" placeholder="City Name">
+                <p></p>
+
+                <div id="submit-btn" class="d-grid gap-2">
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+
+                <p></p>
+            </div>
+
+            <!-- entered city names -->
+            <div class="city-name-section d-grid gap-2">
+                
+            </div>
         </div>
-        
+
+        <!-- right side column -->
+        <div class="col-9 col">
+
+            <!-- current weather section -->
+            <section class="current-weather-section">
+                <h2 id="currentCity" class="fw-bold"></h2>
+                <p>Temperature: <span id="temp" class="currentWeather"></span></p>
+                <p>Wind: <span id="wind" class="currentWeather"></span></p>
+                <p>Humidity: <span id="humid" class="currentWeather"></span></p>
+                <p>UV Index: <span id="uv" class="currentWeather"></span></p>
+            </section>
+
+            <!-- 5 day forcast section -->
+            <section class="five-day-forcast">
+                <h2 class="fw-bold">5 Day Forcast:</h2>
+
+                <!-- individual day slots -->
+                <div class="row justify-content-around">
+
+                    <div class="col-sm-2 bg-secondary text-white">
+                        <h3 id="day0"></h3>
+                        <p id="icon0"></p>
+                        <p>Temp: <span id="temp0"></span></p>
+                        <p>Wind: <span id="wind0"></span></p>
+                        <p>Humidity: <span id="humid0"></span></p>
+                    </div>
+
+                    <div class="col-sm-2 bg-secondary text-white">
+                        <h3 id="day1"></h3>
+                        <p id="icon1"></p>
+                        <p>Temp: <span id="temp1"></span></p>
+                        <p>Wind: <span id="wind1"></span></p>
+                        <p>Humidity: <span id="humid1"></span></p>
+                    </div>
+
+                    <div class="col-sm-2 bg-secondary text-white">
+                        <h3 id="day2"></h3>
+                        <p id="icon2"></p>
+                        <p>Temp: <span id="temp2"></span></p>
+                        <p>Wind: <span id="wind2"></span></p>
+                        <p>Humidity: <span id="humid2"></span></p>
+                    </div>
+
+                    <div class="col-sm-2 bg-secondary text-white">
+                        <h3 id="day3"></h3>
+                        <p id="icon3"></p>
+                        <p>Temp: <span id="temp3"></span></p>
+                        <p>Wind: <span id="wind3"></span></p>
+                        <p>Humidity: <span id="humid3"></span></p>
+                    </div>
+
+                    <div class="col-sm-2 bg-secondary text-white">
+                        <h3 id="day4"></h3>
+                        <p id="icon4"></p>
+                        <p>Temp: <span id="temp4"></span></p>
+                        <p>Wind: <span id="wind4"></span></p>
+                        <p>Humidity: <span id="humid4"></span></p>
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
     </content>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="./assets/js/javascript.js"></script>
+
+    </body>
+
+    
 
 </html>
 
