@@ -22,6 +22,7 @@ today = mm + '/' + dd + '/' + yyyy;
 var citySearch = function() {
     var searchInputVal = document.getElementById("search-input").value;
 
+    otherFunctions(searchInputVal);
     apiCall(searchInputVal);
 
     document.getElementById("search-input").value = "";
@@ -35,15 +36,13 @@ var apiCall = function(city) {
     fetch(api).then(function(response) {
       // request was successful
       if (response.ok) {
-          console.log(response);
         response.json().then(function(data) {
+
             var lat = data[0].lat;
             var lon = data[0].lon;
             var cityName = data[0].name;
             
             weatherCall(lat, lon, cityName);
-            sideButtons(cityName);
-            saveStorage(cityName);
         });
       }
       
@@ -57,6 +56,20 @@ var apiCall = function(city) {
 
 }
 
+// seperation for button and storage functions
+var otherFunctions = function(city) {
+    var api = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + APIKey;
+
+    fetch(api).then(function(response) {
+        response.json().then(function(data) {
+            var cityName = data[0].name;
+            
+            sideButtons(cityName);
+            saveStorage(cityName);
+        });
+      }
+    )}
+
 
 
 // call to get weather info
@@ -65,7 +78,6 @@ var weatherCall = function(lat, lon, cityName) {
 
     fetch(api).then(function(response) {
         response.json().then(function(data) {
-            console.log(data);
             currentWeather(data, cityName);
             fiveDay(data);
         })
@@ -172,8 +184,20 @@ var loadData = function() {
     }
 }
 
+// side button functionality
+$(document).click(function() {
+    $('button').click(function() {
+
+        var city = $(this)[0].innerHTML;
+
+        apiCall(city);
+    })
+
+})
+
 
 // event listeners
 submit.addEventListener('click', citySearch);
 loadData();
+
 
