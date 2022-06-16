@@ -31,7 +31,7 @@ var citySearch = function() {
 
 // call to api
 var apiCall = function(city) {
-    var api = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + APIKey;
+    var api = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + APIKey;
 
     fetch(api).then(function(response) {
       // request was successful
@@ -58,7 +58,7 @@ var apiCall = function(city) {
 
 // seperation for button and storage functions
 var otherFunctions = function(city) {
-    var api = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + APIKey;
+    var api = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + APIKey;
 
     fetch(api).then(function(response) {
         response.json().then(function(data) {
@@ -74,7 +74,7 @@ var otherFunctions = function(city) {
 
 // call to get weather info
 var weatherCall = function(lat, lon, cityName) {
-    var api = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&exclude=minutely,hourly,alerts&appid=" + APIKey;
+    var api = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&exclude=minutely,hourly,alerts&appid=" + APIKey;
 
     fetch(api).then(function(response) {
         response.json().then(function(data) {
@@ -103,7 +103,7 @@ var currentWeather = function(data, cityName) {
 
     var iconCode = data.current.weather[0].icon;
     var icon = document.createElement("img");
-    icon.setAttribute("src", "http://openweathermap.org/img/wn/" + iconCode + "@2x.png");
+    icon.setAttribute("src", "https://openweathermap.org/img/wn/" + iconCode + "@2x.png");
     currentCity.appendChild(icon);
 
     currentTemp.textContent = data.current.temp + " \u00B0" +"F";
@@ -140,7 +140,7 @@ var fiveDay = function(data) {
         $("#day" + i).text(today);
 
         var iconCode = data.daily[i - 1].weather[0].icon;
-        var iconLink = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+        var iconLink = "https://openweathermap.org/img/wn/" + iconCode + ".png";
         $("#icon" + i).html("<img src =" + iconLink + ">");
 
         $("#temp" + i).text(data.daily[i - 1].temp.day + " \u00B0" +"F");
