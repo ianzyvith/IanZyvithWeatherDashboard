@@ -39,3 +39,7 @@ header {
 .uv-high {
     background-color: red;
 }
+
+#forcast-block {
+    padding: 10px;
+}

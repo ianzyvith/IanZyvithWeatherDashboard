@@ -61,6 +61,7 @@ var weatherCall = function(lat, lon, cityName) {
         response.json().then(function(data) {
             console.log(data);
             currentWeather(data, cityName);
+            fiveDay(data);
         })
     })
 }
@@ -107,6 +108,31 @@ var currentWeather = function(data, cityName) {
         currentUV.classList = "uv-high";
     }
 }
+
+// 5 day forcast
+var fiveDay = function(data) {
+
+    for (i = 1; i < 6; i++) {
+        var today = new Date();
+        var dd = String(today.getDate() + i).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
+
+        $("#day" + i).text(today);
+
+        var iconCode = data.daily[i - 1].weather[0].icon;
+        var iconLink = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+        $("#icon" + i).html("<img src =" + iconLink + ">");
+
+        $("#temp" + i).text(data.daily[i - 1].temp.day + " \u00B0" +"F");
+
+        $("#wind" + i).text(data.daily[i - 1].wind_speed + " MPH");
+
+        $("#humid" + i).text(data.daily[i - 1].humidity + " %");
+    }
+}
+
 
 
 // local storage to save entries
