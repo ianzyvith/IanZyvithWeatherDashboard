@@ -17,13 +17,16 @@ var yyyy = today.getFullYear();
 today = mm + '/' + dd + '/' + yyyy;
 
 
+
 // get city name from input
 var citySearch = function() {
     var searchInputVal = document.getElementById("search-input").value;
+
     apiCall(searchInputVal);
 
     document.getElementById("search-input").value = "";
 }
+
 
 // call to api
 var apiCall = function(city) {
@@ -40,6 +43,7 @@ var apiCall = function(city) {
             
             weatherCall(lat, lon, cityName);
             sideButtons(cityName);
+            saveStorage(cityName);
         });
       }
       
@@ -52,6 +56,8 @@ var apiCall = function(city) {
     });
 
 }
+
+
 
 // call to get weather info
 var weatherCall = function(lat, lon, cityName) {
@@ -134,10 +140,40 @@ var fiveDay = function(data) {
 }
 
 
-
 // local storage to save entries
+var saveStorage = function(cityName) {
+    var existingData = JSON.parse(localStorage.getItem("cityList"));
+
+    if (existingData == null) {
+        existingData = [];
+    }
+
+    existingData.push(cityName);
+
+    localStorage.setItem("cityList", JSON.stringify(existingData));
+}
+
+// load local storage on refresh
+var loadData = function() {
+    var existingData = JSON.parse(localStorage.getItem("cityList"));
+
+    var length = existingData.length
+
+    if (existingData === null) {
+
+    }
+
+    else {
+        for (i = 0; i < length; i++) {
+            cityNames = existingData[i];
+
+            sideButtons(cityNames);
+        }
+    }
+}
 
 
 // event listeners
 submit.addEventListener('click', citySearch);
+loadData();
 
